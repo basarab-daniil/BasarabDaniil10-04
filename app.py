@@ -11,21 +11,18 @@ def home():
     dizionario = df.to_dict()
     nome = dizionario.get('Nome', {}).get(0)
     cognome = dizionario.get('Cognome', {}).get(0)
-    return render_template('index.html', nome=nome, cognome=cognome)
-
-@app.route("/inserisci", methods=["GET", "POST"])
-def inserisci():
-    if request.method == "POST":
-        nome = request.form["nome"]
-        return f"Hai inserito: {nome}"
-    return render_template("form.html")
+    scuola = dizionario.get('Scuola', {}).get(0)
+    hobby = dizionario.get('Hobby', {}).get(0)
+    return render_template('index.html', nome=nome, cognome=cognome, scuola=scuola, hobby=hobby)
 
 @app.route("/modifica", methods=["GET", "POST"])
 def modifica():
     if request.method == "POST":
         nuovo_profilo = {
             "Nome": request.form["nome"],
-            "Cognome": request.form["cognome"]
+            "Cognome": request.form["cognome"],
+            "Scuola": request.form["scuola"],
+            "Hobby": request.form["hobby"]
         }
         df = pd.DataFrame([nuovo_profilo])
         df.to_csv("profilo.csv", index=False)
