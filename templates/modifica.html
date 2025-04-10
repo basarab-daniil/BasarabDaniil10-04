@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1><b>Modifica il tuo profilo</b></h1>
+<form method="post">
+<label>Nome:
+<input type="text" name="nome" value="{{ dati['Nome'] }}" required>
+</label><br><br>
+<label>Cognome:
+<input type="text" name="cognome" value="{{ dati['Cognome'] }}" required>
+</label><br><br>
+<button type="submit">Salva</button>
+</form>
+<br>
+<a href="{{ url_for('home') }}">Torna al profilo</a>
+</body>
+</html>
